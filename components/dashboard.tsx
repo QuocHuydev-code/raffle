@@ -315,6 +315,7 @@ function RaffleCard({ raffle }: { raffle: Raffle }) {
   const isCreator = address && raffle.creator === address;
   const isPastDeadline = now >= Number(raffle.deadline);
   const isDrawn = raffle.status === 1;
+  const isWinner = isDrawn && address && raffle.winner === address;
   const total = useMemo(
     () => raffle.prize + raffle.ticketPrice * BigInt(raffle.ticketCount),
     [raffle]
@@ -385,6 +386,25 @@ function RaffleCard({ raffle }: { raffle: Raffle }) {
           mono
         />
       </div>
+
+      {isWinner && (
+        <div className="mt-4 overflow-hidden rounded-xl border-2 border-success bg-gradient-to-br from-success/20 via-accent/10 to-accent-3/20 p-4 text-center">
+          <div className="text-2xl">🎉</div>
+          <div className="mt-1 text-base font-bold text-success">
+            Congratulations, you are the winner!
+          </div>
+          <div className="mt-1 font-mono text-sm text-fg">
+            {fmtXlm(total)} XLM has been transferred to your wallet.
+          </div>
+        </div>
+      )}
+
+      {isDrawn && !isWinner && address && (
+        <div className="mt-4 rounded-md border border-border bg-bg/40 p-3 text-center text-xs text-muted">
+          This raffle is over. Winner: {shortAddr(raffle.winner)}.
+          {raffle.ticketCount > 0 && address !== raffle.creator && " Better luck next time!"}
+        </div>
+      )}
 
       {!isDrawn && !isPastDeadline && address && (
         <button
