@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #fce7f3;
+  --color-surface: #ffffff;
+  --color-elevated: #fdf2f8;
+  --color-border: #fbcfe8;
+  --color-fg: #4a044e;
+  --color-muted: #86198f;
+  --color-subtle: #c026d3;
+  --color-accent: #ec4899;
+  --color-accent-soft: #fce7f3;
+  --color-accent-2: #06b6d4;
+  --color-accent-3: #fde047;
+  --color-success: #34d399;
+  --color-danger: #fb7185;
+
+  --font-sans: var(--font-quicksand), ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", monospace;
+}
+
+html,
+body {
+  color: var(--color-fg);
+  min-height: 100vh;
+}
+
+body {
+  background: linear-gradient(180deg, #fce7f3 0%, #fae8ff 50%, #ddd6fe 100%);
+  background-attachment: fixed;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+/* Y2K bubbly chrome shared utilities */
+.bubble-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1.5rem;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.7),
+    0 6px 20px rgb(192 38 211 / 0.1);
+}
+
+.bubble-cta {
+  background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+  color: #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 8px 24px rgb(236 72 153 / 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bubble-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgb(236 72 153 / 0.45);
+}
+
+.heart-pulse {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 9999px;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 0 rgb(236 72 153 / 0.55);
+  animation: heart 1.6s ease-in-out infinite;
+}
+
+@keyframes heart {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(236 72 153 / 0.55); }
+  50%      { box-shadow: 0 0 0 8px rgb(236 72 153 / 0); }
+}
+
+/* Existing ticket-stub treatment, recolored for the y2k palette */
+.ticket {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1.5rem;
+  position: relative;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.7),
+    0 6px 20px rgb(192 38 211 / 0.1);
+}
+
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #fae8ff;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ticket::before { left: -10px; }
+.ticket::after { right: -10px; }
+
+.ticket-divider {
+  border-top: 1px dashed var(--color-border);
+}
