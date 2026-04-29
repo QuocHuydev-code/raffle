@@ -406,16 +406,22 @@ function RaffleCard({ raffle }: { raffle: Raffle }) {
         </div>
       )}
 
-      {!isDrawn && !isPastDeadline && address && (
-        <button
-          onClick={onBuy}
-          disabled={buy.isPending}
-          className="mt-4 w-full rounded-md bg-accent px-3 py-2 text-sm font-medium text-bg transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {buy.isPending
-            ? "Buying…"
-            : `Buy Ticket · ${fmtXlm(raffle.ticketPrice)} XLM`}
-        </button>
+      {!isDrawn && !isPastDeadline && (
+        address ? (
+          <button
+            onClick={onBuy}
+            disabled={buy.isPending}
+            className="mt-4 w-full rounded-full bg-accent px-3 py-3 text-sm font-bold text-white shadow-lg shadow-accent/30 transition-all hover:opacity-90 hover:shadow-accent/50 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {buy.isPending
+              ? "Buying…"
+              : `Buy Ticket · ${fmtXlm(raffle.ticketPrice)} XLM`}
+          </button>
+        ) : (
+          <div className="mt-4 rounded-md border border-dashed border-accent/40 bg-accent/5 p-3 text-center text-xs text-muted">
+            Connect a wallet to buy a ticket.
+          </div>
+        )
       )}
 
       {!isDrawn && isPastDeadline && isCreator && (
@@ -433,7 +439,7 @@ function RaffleCard({ raffle }: { raffle: Raffle }) {
           <button
             onClick={onDraw}
             disabled={draw.isPending || !secret}
-            className="w-full rounded-md bg-warn px-3 py-2 text-sm font-medium text-bg transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-full bg-warn px-3 py-3 text-sm font-bold text-white shadow-lg shadow-warn/30 transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {draw.isPending ? "Drawing…" : "Draw Winner"}
           </button>
