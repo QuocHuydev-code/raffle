@@ -1,13 +1,15 @@
 # Raffle
 
 [![CI](https://github.com/QuocHuydev-code/raffle/actions/workflows/ci.yml/badge.svg)](https://github.com/QuocHuydev-code/raffle/actions)
+<img width="1428" height="783" alt="image" src="https://github.com/user-attachments/assets/b72267cc-9636-4f59-9c05-95b348dc601d" />
+
 
 ## What is this?
 
 An on-chain **multi-raffle hub** on Stellar Testnet with commit-reveal randomness. Anyone can create a raffle by escrowing a prize pool and committing to a secret. Anyone else can buy tickets while the sale window is open. After the deadline, the creator reveals their committed secret; the contract verifies sha256(secret) matches the stored hash, then derives the winning ticket index from sha256(secret + ticket count) and pushes the entire pool (prize + ticket pot) to the winner.
 
-- Live: (Vercel URL goes here)
-- Demo video: (1-min walkthrough goes here)
+- Live: https://raffle-wheat-zeta.vercel.app/
+- Demo video: https://drive.google.com/file/d/1RNpzVeDXpyhJqBWXRPxa_0WrCK8VBvC3/view?usp=sharing
 - Contract: [`CDG2GZDV...522U`](https://stellar.expert/explorer/testnet/contract/CDG2GZDV2X3WEGEBNLWQG4KGN2QDDWGVGDTEEVLBLZ5ILAQC2FSD522U)
 
 ## What's Different
@@ -61,6 +63,8 @@ cd contract && cargo test
 ```
 
 11 tests covering: sequential id assignment, buy-records-buyer, multi-buyer pool growth, deadline gates on buy + draw, wrong-secret rejection, no-tickets edge case, full draw flow with winner pick, re-draw blocked, non-creator blocked, and a smoke test that two raffles in the same hub stay independent.
+<img width="394" height="183" alt="image" src="https://github.com/user-attachments/assets/55966a6e-b8bf-42c3-a2ec-9c1cde966621" />
+
 
 ### Does CI run?
 
@@ -87,4 +91,11 @@ The dashboard stacks single-column under 640px and the buy / draw CTAs are full-
 
 ## Screenshots
 
-![Mobile](docs/screenshots/mobile.png)
+### Desktop
+<img width="1359" height="803" alt="image" src="https://github.com/user-attachments/assets/1d6f4028-1cd5-47dc-8c85-5b60b601a4cf" />
+
+
+### Mobile
+<img width="396" height="622" alt="image" src="https://github.com/user-attachments/assets/84fe2131-cec4-4e8e-8399-8698c080b4d5" />
+
+
